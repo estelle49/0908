@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box"></div>
+  <div id="box1"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    // 创建虚拟DOM对象的两种方式
+  /*const ele = <h1>hello</h1>
+  //渲染
+  ReactDOM.render(ele,document.getElementById("box"));
+  const ele1  = React.createElement('h2',null,'hello word')
+  ReactDOM.render(ele1,document.getElementById("box1"));
+  */
+    //定义组件的两种方式
+    /*function Component(){
+      return <h1>工厂函数组件方式</h1>
+    }
+    
+    class Component1 extends React.Component{
+      render(){
+        return <h2>ES6类组件方式</h2>
+      }
+    }
+    ReactDOM.render(<Component/>,document.getElementById("box"))
+    ReactDOM.render(<Component1/>,document.getElementById("box1"))*/
+
+    //jsx的练习，需求：动态展示数据
+    /*const data = ['html','css','javascript','es6','juqery']
+    const comtent = data.map((item,index)=>{
+      return <li key={index}>{item}</li>
+    })
+    const ele = <ul>{comtent}</ul>
+    ReactDOM.render(ele,document.getElementById('box'))*/
+/*state练习 需求：自定义组件，功能说明如下
+1. 显示h2标题, 初始文本为: 你喜欢我
+2. 点击标题更新为: 我喜欢你
+*/
+    /*class Component extends React.Component{
+      constructor(){
+        super();
+        //初始化
+        this.state ={
+          isLike:true
+        }
+        //改变handle方法中this的指向
+        this.handleClike = this.handleClike.bind(this)
+      }
+      handleClike(){
+        const {isLike} = this.state
+        this.setState({
+          isLike: !isLike
+        })
+      }
+      render(){
+        const {isLike} = this.state
+        return <h2 onClick={this.handleClike}>{isLike?'I LOVE YOU ' : 'YOU LOVE I'}</h2>
+      }
+    }*/
+    /**
+     * 简写
+     */
+     class Component extends React.Component{
+       //初始化
+       state = {
+         isLike:true
+       }
+       handleClike= () => {
+        const {isLike} = this.state
+        this.setState({
+          isLike: !isLike
+        })
+       }
+       render(){
+        const {isLike} = this.state;
+        return <h2 onClick={this.handleClike}>{isLike?'I LOVE YOU ' : 'YOU LOVE I'}</h2>
+
+       }
+     }
+    ReactDOM.render(<Component/>,document.getElementById('box'))
+</script>
+</body>
+
+</html>

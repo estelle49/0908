@@ -1,0 +1,40 @@
+< !DOCTYPE html>
+  <html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>03_component_basic</title>
+  </head>
+
+  <body>
+
+    <div id="example1"></div>
+    <div id="example2"></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+      // 工厂函数方式 定义组件
+          function MyComponent(){
+            //组件中需要渲染的内容
+            console.log(this); //普通函数调用，严格模式下 use strict   this为undefined
+           return <h1>工厂函数方式</h1>
+          }
+          
+          // 渲染组件
+          ReactDOM.render(<MyComponent />,document.getElementById('example1'))
+          // ES6类组件方式
+          class MyComponent1 extends React.Component{
+            render(){
+              console.log(this);
+              return <h2>ES6类组件</h2>
+            }
+          }
+          ReactDOM.render(<MyComponent1 />,document.getElementById('example2'))
+       
+          </script>
+  </body>
+
+  </html>

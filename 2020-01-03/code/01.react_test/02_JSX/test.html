@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>02_JSX</title>
+</head>
+
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    //创建虚拟DOM对象 方式一 react自带创建方法
+  const ele = React.createElement('h1','null','hello')
+  // 渲染到页面
+  ReactDOM.render(ele,document.getElementById('test1'))
+
+  //方式二 jsx语法
+  const ele1 = <h2>hello jsx</h2>
+  ReactDOM.render(ele1,document.getElementById('test2'))
+  </script>
+</body>
+
+</html>

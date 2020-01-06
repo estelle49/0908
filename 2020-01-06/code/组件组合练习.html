@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>todolist</title>
+</head>
+
+<body>
+  <div id="box">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/prop-types.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      //定义组件
+  class App extends React.Component{
+    state = {
+      todoList:[
+        '吃饭',
+        '睡觉',
+        '打豆豆'
+      ]
+    }
+    add=(todo)=>{
+      // 获取原有的todolist数据
+      const {todoList} = this.state;
+      // 添加新数据
+      //todoList.unshift(todo)
+      this.setState({
+        todoList:[todo,...todoList]
+      })
+    }
+    render(){
+      const {todoList} = this.state;
+      return <div>
+        <h1>Todolist 列表</h1>
+        <Add add = {this.add} length = { todoList.length}/>
+        <List todoList = {todoList} />
+        </div>
+    }
+  }
+  class Add extends React.Component{
+    static propTypes = {
+      add : PropTypes.func.isRequired,
+      length : PropTypes.number.isRequired
+    }
+    //创建对象
+    inputRef = React.createRef()
+    addList=()=>{
+      const input = this.inputRef.current;
+      const value = input.value;
+      if(!value)return;
+      // 调用add方法,更新state
+      this.props.add(value)
+      input.value = '';
+    }
+    render(){
+      return <div>
+      <input type="text" ref={this.inputRef}/>
+      <button onClick={this.addList}>添加# {this.props.length} </button>
+      </div>
+    } 
+  }
+  class List extends React.Component{
+    // 声明属性的类型和必要性限制
+    static propTypes = {
+        todoList: PropTypes.array.isRequired
+      }
+    render(){
+      const {todoList} = this.props;
+      return <ul>{
+        todoList.map((item,index) => <li key={index}>{item}</li>)
+      } 
+        {/*<li>吃饭</li>
+        <li>睡觉</li>
+        <li>打豆豆</li></li>*/}
+        </ul>
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById("box"))
+  
+
+  </script>
+</body>
+
+</html>
